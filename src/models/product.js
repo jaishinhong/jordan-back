@@ -46,5 +46,15 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: "RESTRICT"
         });
     };
+
+    Product.associate = (models) => {
+        Product.hasMany(models.Cart, {
+            foreignKey: {
+                name: "ProductId",
+                allowNull: false
+            },
+            onDelete: "RESTRICT"
+        });
+    };
     return Product;
 };

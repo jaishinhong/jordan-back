@@ -13,5 +13,26 @@ module.exports = (sequelize, DataTypes) => {
         },
         {}
     );
+
+    Cart.associate = (models) => {
+        Cart.belongsTo(models.User, {
+            foreignKey: {
+                name: "UserId",
+                allowNull: false
+            },
+            onDelete: "RESTRICT"
+        });
+    };
+
+    Cart.associate = (models) => {
+        Cart.belongsTo(models.Product, {
+            foreignKey: {
+                name: "ProductId",
+                allowNull: false
+            },
+            onDelete: "RESTRICT"
+        });
+    };
+
     return Cart;
 };

@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             email: {
                 type: DataTypes.STRING,
+                allowNull: false,
                 unique: true,
                 validate: {
                     isEmail: true
@@ -43,12 +44,22 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            underscore: true
+            underscored: true
         }
     );
 
     User.associate = (models) => {
         User.hasMany(models.Order, {
+            foreignKey: {
+                name: "UserId",
+                allowNull: false
+            },
+            onDelete: "RESTRICT"
+        });
+    };
+
+    User.associate = (models) => {
+        User.hasMany(models.Cart, {
             foreignKey: {
                 name: "UserId",
                 allowNull: false
