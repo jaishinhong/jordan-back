@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = (models) => {
         User.hasMany(models.Order, {
             foreignKey: {
-                name: "UserId",
+                name: "userId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = (models) => {
         User.hasMany(models.Cart, {
             foreignKey: {
-                name: "UserId",
+                name: "userId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

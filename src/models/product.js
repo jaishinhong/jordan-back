@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Product.associate = (models) => {
         Product.hasMany(models.Item, {
             foreignKey: {
-                name: "ProductId",
+                name: "productId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     Product.associate = (models) => {
         Product.belongsTo(models.Category, {
             foreignKey: {
-                name: "CategoryId",
+                name: "categoryId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     Product.associate = (models) => {
         Product.hasMany(models.Size, {
             foreignKey: {
-                name: "ProductId",
+                name: "productId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     Product.associate = (models) => {
         Product.hasMany(models.Cart, {
             foreignKey: {
-                name: "ProductId",
+                name: "productId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     Item.associate = (models) => {
         Item.belongsTo(models.Order, {
             foreignKey: {
-                name: "OrderId",
+                name: "orderId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     Item.associate = (models) => {
         Item.belongsTo(models.Product, {
             foreignKey: {
-                name: "ProductId",
+                name: "productId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

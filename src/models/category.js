@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     Category.associate = (models) => {
         Category.hasMany(models.Product, {
             foreignKey: {
-                name: "CategoryId",
+                name: "categoryId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

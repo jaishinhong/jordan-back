@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     Size.associate = (models) => {
         Size.belongsTo(models.Product, {
             foreignKey: {
-                name: "ProductId",
+                name: "productId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

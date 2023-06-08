@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     Cart.associate = (models) => {
         Cart.belongsTo(models.User, {
             foreignKey: {
-                name: "UserId",
+                name: "userId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     Cart.associate = (models) => {
         Cart.belongsTo(models.Product, {
             foreignKey: {
-                name: "ProductId",
+                name: "productId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

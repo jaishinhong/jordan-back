@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     Order.associate = (models) => {
         Order.belongsTo(models.User, {
             foreignKey: {
-                name: "UserId",
+                name: "userId",
                 allowNull: false
             },
             onDelete: "RESTRICT"
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     Order.associate = (models) => {
         Order.hasMany(models.Item, {
             foreignKey: {
-                name: "OrderId",
+                name: "orderId",
                 allowNull: false
             },
             onDelete: "RESTRICT"

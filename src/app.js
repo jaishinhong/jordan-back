@@ -10,6 +10,7 @@ const authenticate = require("./middlewares/authenticate");
 const app = express();
 
 app.use(cors());
+// app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); //convert request body to object
 
 app.use("/auth", authRoute);
