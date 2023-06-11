@@ -10,5 +10,6 @@ router.put(
     upload.single("image"),
     adminSerivce.updateProduct
 );
-// router.put("/updateSize/:id", adminSerivce.updateSize);
+router.put("/updateQuantity/:id/:name", adminSerivce.updateSize);
+router.delete("/deleteProduct/:id", adminSerivce.deleteProduct);
 module.exports = router;

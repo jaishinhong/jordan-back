@@ -25,9 +25,6 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: "RESTRICT"
         });
-    };
-
-    Product.associate = (models) => {
         Product.belongsTo(models.Category, {
             foreignKey: {
                 name: "categoryId",
@@ -35,9 +32,6 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: "RESTRICT"
         });
-    };
-
-    Product.associate = (models) => {
         Product.hasMany(models.Size, {
             foreignKey: {
                 name: "productId",
@@ -45,9 +39,6 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: "RESTRICT"
         });
-    };
-
-    Product.associate = (models) => {
         Product.hasMany(models.Cart, {
             foreignKey: {
                 name: "productId",

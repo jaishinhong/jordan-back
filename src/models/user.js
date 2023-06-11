@@ -56,9 +56,6 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: "RESTRICT"
         });
-    };
-
-    User.associate = (models) => {
         User.hasMany(models.Cart, {
             foreignKey: {
                 name: "userId",

@@ -26,8 +26,6 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: "RESTRICT"
         });
-    };
-    Item.associate = (models) => {
         Item.belongsTo(models.Product, {
             foreignKey: {
                 name: "productId",
@@ -36,5 +34,6 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: "RESTRICT"
         });
     };
+
     return Item;
 };

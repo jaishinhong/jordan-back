@@ -1,7 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
     const Order = sequelize.define("Order", {
         status: {
-            type: DataTypes.ENUM("pending", "approved", "waiting", "success")
+            type: DataTypes.ENUM(
+                "pending",
+                "approved",
+                "shipping",
+                "delivered"
+            ),
+            defaultValue: "pending"
         }
     });
 
@@ -13,9 +19,6 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: "RESTRICT"
         });
-    };
-
-    Order.associate = (models) => {
         Order.hasMany(models.Item, {
             foreignKey: {
                 name: "orderId",
@@ -24,5 +27,6 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: "RESTRICT"
         });
     };
+
     return Order;
 };
