@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
                 "delivered"
             ),
             defaultValue: "pending"
+        },
+        receipt: {
+            type: DataTypes.STRING
         }
     });
 
