@@ -45,3 +45,17 @@ exports.deleteCart = async (req, res, next) => {
         next(err);
     }
 };
+
+exports.deleteCartByUser = async (req, res, next) => {
+    try {
+        const userId = req.user.id;
+        // console.log(
+        //     userId,
+        //     "hellooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+        // );
+        await Cart.destroy({ where: { userId } });
+        res.status(200).json({ message: "delete sucessfully" });
+    } catch (err) {
+        next(err);
+    }
+};
