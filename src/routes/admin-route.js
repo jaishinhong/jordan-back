@@ -5,6 +5,7 @@ const adminSerivce = require("../controllers/admin-controller");
 const router = express.Router();
 
 router.post("/addProduct", upload.single("image"), adminSerivce.addProduct);
+router.get("/getProducts", adminSerivce.getProducts);
 router.put(
     "/updateProduct/:id",
     upload.single("image"),

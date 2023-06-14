@@ -1,5 +1,7 @@
+const fs = require("fs");
 const { Order, Item, Cart, sequelize, Product, User } = require("../models");
 const cloudinary = require("../config/cloudinary");
+
 exports.addOrder = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {

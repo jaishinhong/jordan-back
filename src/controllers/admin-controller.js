@@ -1,6 +1,15 @@
 const fs = require("fs");
 const cloudinary = require("../config/cloudinary");
-const { Product, Size, sequelize } = require("../models");
+const { Product, Size, sequelize, Item, Cart } = require("../models");
+
+exports.getProducts = async (req, res, next) => {
+    try {
+        const products = await Product.findAll();
+        res.status(200).json({ products });
+    } catch (err) {
+        next(err);
+    }
+};
 
 exports.addProduct = async (req, res, next) => {
     const t = await sequelize.transaction();
@@ -44,9 +53,9 @@ exports.addProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
     try {
         const id = req.params.id;
-
-        const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(req?.file?.path);
         const image = result.secure_url;
+
         await Product.update(
             {
                 name: req.body.name,
@@ -97,7 +106,8 @@ exports.deleteProduct = async (req, res, next) => {
     try {
         const { id } = req.params;
         await Size.destroy({ where: { productId: id } }, { transaction: t });
-
+        await Cart.destroy({ where: { productId: id } }, { transaction: t });
+        await Item.destroy({ where: { productId: id } }, { transaction: t });
         await Product.destroy({ where: { id } }, { transaction: t });
         await t.commit();
         res.status(200).json({ message: "delete successfully" });
