@@ -53,8 +53,26 @@ exports.addProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const result = await cloudinary.uploader.upload(req?.file?.path);
-        const image = result.secure_url;
+        let image;
+        if (!req?.file?.path) {
+            await Product.update(
+                {
+                    name: req.body.name,
+                    price: req.body.price,
+                    categoryId: req.body.categoryId
+                },
+                {
+                    where: {
+                        id
+                    }
+                }
+            );
+            res.status(200).json({ message: "updated successfully" });
+            return;
+        } else {
+            const result = await cloudinary.uploader.upload(req?.file?.path);
+            image = result.secure_url;
+        }
 
         await Product.update(
             {
