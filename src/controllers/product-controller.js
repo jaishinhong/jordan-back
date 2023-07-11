@@ -1,4 +1,5 @@
 const { Product, Size, Category } = require("../models");
+const { Op } = require("sequelize");
 exports.getAllProduct = async (req, res, next) => {
     try {
         const products = await Product.findAll({
@@ -30,6 +31,30 @@ exports.getProductByCategoryId = async (req, res, next) => {
             }
         });
         res.status(200).json({ products });
+    } catch (err) {
+        next(err);
+    }
+};
+
+exports.getSearchedProduct = async (req, res, next) => {
+    try {
+        const { name, categoryId } = req.query;
+        if (categoryId !== "undefined") {
+            const searchedProducts = await Product.findAll({
+                where: {
+                    name: { [Op.like]: `%${name}%` },
+                    categoryId: categoryId
+                }
+            });
+            res.status(200).json({ searchedProducts });
+        } else {
+            const searchedProducts = await Product.findAll({
+                where: {
+                    name: { [Op.like]: `%${name}%` }
+                }
+            });
+            res.status(200).json({ searchedProducts });
+        }
     } catch (err) {
         next(err);
     }

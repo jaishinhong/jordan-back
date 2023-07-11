@@ -9,5 +9,6 @@ router.get(
     "/getProductByCategoryId/:id",
     productController.getProductByCategoryId
 );
+router.get("/getSearchedProduct", productController.getSearchedProduct);
 
 module.exports = router;
